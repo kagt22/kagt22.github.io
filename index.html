@@ -1,154 +1,164 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кото-мемы 2025</title>
-    <script type="importmap">
-        {
-            "imports": {
-                "vue": "https://unpkg.com/vue@3.4.0/dist/vue.esm-browser.js"
-            }
-        }
-    </script>
+    <title>🔥 КРИПТО-КОТЫ 2025 🔥</title>
     <style>
         :root {
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+            --neon-pink: #ff2ced;
+            --neon-blue: #00f7ff;
+            --neon-purple: #9d00ff;
+            --neon-yellow: #fff700;
+            --bg-dark: #0a0a14;
+        }
+        
+        @font-face {
+            font-family: 'Cyber';
+            src: url('https://fonts.cdnfonts.com/css/cyberpunk') format('woff2');
         }
         
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: #121212;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            overflow-x: hidden;
-        }
-        
-        #app {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-        
-        .slider-container {
-            flex: 1;
-            position: relative;
+            background: var(--bg-dark);
+            font-family: 'Cyber', sans-serif;
             overflow: hidden;
+            color: white;
+        }
+        
+        .cyber-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
             perspective: 1000px;
+            overflow: hidden;
         }
         
-        .slider-track {
+        .cyber-slider {
             display: flex;
             height: 100%;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform;
-        }
-        
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        
-        .slide-content {
-            width: 90%;
-            max-width: 1200px;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        
-        .meme-image {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            object-fit: contain;
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
             transform-style: preserve-3d;
-            transition: transform 0.5s;
-            border: 2px solid rgba(255, 255, 255, 0.1);
         }
         
-        .meme-image:hover {
-            transform: translateY(-5px) rotateX(5deg);
-        }
-        
-        .caption {
-            color: white;
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            margin-top: 2rem;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            max-width: 80%;
-        }
-        
-        .controls {
+        .cyber-slide {
+            min-width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .btn {
-            background: var(--gradient);
-            border: none;
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: var(--shadow);
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
+            position: relative;
+            transform-style: preserve-3d;
         }
         
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+        .cyber-card {
+            width: 80vw;
+            height: 80vh;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 
+                0 0 30px var(--neon-pink),
+                0 0 60px var(--neon-blue),
+                0 0 90px var(--neon-purple);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)) 1;
+            transition: all 0.5s;
         }
         
-        .pagination {
+        .cyber-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(150%) contrast(120%) brightness(90%);
+            transition: transform 0.5s;
+        }
+        
+        .cyber-caption {
             position: absolute;
-            bottom: 1rem;
+            bottom: 10%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 10px var(--neon-pink),
+                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-purple);
+            background: linear-gradient(90deg, 
+                rgba(255,44,237,0.3) 0%, 
+                rgba(0,247,255,0.3) 100%);
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            clip-path: polygon(
+                0% 0%, 
+                100% 0%, 
+                95% 50%, 
+                100% 100%, 
+                0% 100%, 
+                5% 50%
+            );
+        }
+        
+        .cyber-nav {
+            position: absolute;
+            bottom: 5%;
             left: 0;
             right: 0;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
-            z-index: 10;
+            gap: 2rem;
+            z-index: 100;
         }
         
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+        .cyber-btn {
+            background: none;
+            border: 2px solid var(--neon-blue);
+            color: white;
+            padding: 1rem 2rem;
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px var(--neon-blue);
         }
         
-        .dot.active {
-            background: white;
-            transform: scale(1.3);
+        .cyber-btn:hover {
+            box-shadow: 0 0 30px var(--neon-pink);
+            border-color: var(--neon-pink);
+            transform: translateY(-5px);
         }
         
-        .ai-effects {
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                var(--neon-blue) 50%,
+                transparent 55%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -50%; top: -50%; }
+            100% { left: 150%; top: 150%; }
+        }
+        
+        .cyber-particles {
             position: absolute;
             top: 0;
             left: 0;
@@ -156,245 +166,261 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.1;
         }
         
-        @media (max-width: 768px) {
-            .slide-content {
-                height: 70vh;
+        .cyber-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 10s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(0) translateX(0); 
+                opacity: 0; 
             }
-            
-            .btn {
-                padding: 0.7rem 1.5rem;
+            50% { opacity: 1; }
+            100% { 
+                transform: translateY(-100vh) translateX(100px); 
+                opacity: 0; 
             }
+        }
+        
+        .cyber-glitch {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="black"/><rect x="10" y="10" width="80" height="80" fill="%2300f7ff" opacity="0.1"/></svg>');
+            opacity: 0.1;
+            animation: glitch 5s infinite alternate;
+            pointer-events: none;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); }
+            40% { transform: translate(-5px, -5px); }
+            60% { transform: translate(5px, 5px); }
+            80% { transform: translate(5px, -5px); }
+            100% { transform: translate(0); }
+        }
+        
+        .cyber-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            animation: progress 5s linear infinite;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <div class="slider-container">
-            <div class="slider-track" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-                <!-- Slide 1 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <img 
-                            src="https://cataas.com/cat?width=1200&height=800" 
-                            class="meme-image" 
-                            alt="AI Cat 2025"
-                            loading="lazy"
-                        >
-                        <div class="caption">"Когда ИИ делает всю работу за тебя"</div>
-                    </div>
-                </div>
-                
-                <!-- Slide 2 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <img 
-                            src="https://cataas.com/cat/cute?width=1200&height=800" 
-                            class="meme-image" 
-                            alt="Cute Cat"
-                            loading="lazy"
-                        >
-                        <div class="caption">"Нейросети не смогут повторить эту милоту"</div>
-                    </div>
-                </div>
-                
-                <!-- Slide 3 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <img 
-                            src="https://cataas.com/cat/gif?width=1200&height=800" 
-                            class="meme-image" 
-                            alt="Dancing Cat"
-                            loading="lazy"
-                        >
-                        <div class="caption">"Когда твой код работает без багов"</div>
-                    </div>
-                </div>
-                
-                <!-- Slide 4 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <img 
-                            src="https://cataas.com/cat/says/Web%203.0?width=1200&height=800" 
-                            class="meme-image" 
-                            alt="Web 3.0 Cat"
-                            loading="lazy"
-                        >
-                        <div class="caption">"Кот в метавселенной"</div>
-                    </div>
-                </div>
-                
-                <!-- Slide 5 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <img 
-                            src="https://cataas.com/cat/says/Quantum%20Computing?width=1200&height=800" 
-                            class="meme-image" 
-                            alt="Quantum Cat"
-                            loading="lazy"
-                        >
-                        <div class="caption">"Квантовый кот Шрёдингера"</div>
-                    </div>
-                </div>
-                
-                <!-- Slide 6 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <img 
-                            src="https://cataas.com/cat/says/Blockchain?width=1200&height=800" 
-                            class="meme-image" 
-                            alt="Crypto Cat"
-                            loading="lazy"
-                        >
-                        <div class="caption">"NFT котик"</div>
-                    </div>
+    <div class="cyber-container">
+        <div class="cyber-glitch"></div>
+        
+        <div class="cyber-slider" id="slider">
+            <!-- Slide 1 -->
+            <div class="cyber-slide">
+                <div class="cyber-card">
+                    <img 
+                        src="https://cataas.com/cat?type=square&width=1200&height=1200&filter=sepia&color=purple" 
+                        class="cyber-image" 
+                        alt="Cyber Cat"
+                    >
+                    <div class="cyber-caption">КРИПТО-КОТ 3000</div>
                 </div>
             </div>
             
-            <div class="pagination">
-                <div 
-                    v-for="(_, index) in slides" 
-                    :key="index"
-                    class="dot"
-                    :class="{ active: currentIndex === index }"
-                    @click="goToSlide(index)"
-                ></div>
+            <!-- Slide 2 -->
+            <div class="cyber-slide">
+                <div class="cyber-card">
+                    <img 
+                        src="https://cataas.com/cat/cute?width=1200&height=1200&filter=negate" 
+                        class="cyber-image" 
+                        alt="Neon Cat"
+                    >
+                    <div class="cyber-caption">НЕОН-МЯУ</div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="cyber-slide">
+                <div class="cyber-card">
+                    <img 
+                        src="https://cataas.com/cat/gif?width=1200&height=1200" 
+                        class="cyber-image" 
+                        alt="Matrix Cat"
+                    >
+                    <div class="cyber-caption">МАТРИЧНЫЙ КОТ</div>
+                </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="cyber-slide">
+                <div class="cyber-card">
+                    <img 
+                        src="https://cataas.com/cat/says/NFT?width=1200&height=1200&filter=mono" 
+                        class="cyber-image" 
+                        alt="NFT Cat"
+                    >
+                    <div class="cyber-caption">NFT КОТЕЦ</div>
+                </div>
+            </div>
+            
+            <!-- Slide 5 -->
+            <div class="cyber-slide">
+                <div class="cyber-card">
+                    <img 
+                        src="https://cataas.com/cat/says/AI?width=1200&height=1200&filter=paint" 
+                        class="cyber-image" 
+                        alt="AI Cat"
+                    >
+                    <div class="cyber-caption">ИИ-КОТИК</div>
+                </div>
             </div>
         </div>
         
-        <div class="controls">
-            <button class="btn" @click="prevSlide">
-                <span>←</span> Назад
-            </button>
-            <button class="btn" @click="nextSlide">
-                Вперёд <span>→</span>
-            </button>
+        <div class="cyber-progress" id="progress"></div>
+        
+        <div class="cyber-nav">
+            <button class="cyber-btn" id="prevBtn">← НАЗАД</button>
+            <button class="cyber-btn" id="nextBtn">ВПЕРЁД →</button>
         </div>
         
-        <canvas class="ai-effects" ref="aiCanvas"></canvas>
+        <div class="cyber-particles" id="particles"></div>
     </div>
 
-    <script type="module">
-        import { createApp, ref, onMounted } from 'vue';
-        
-        createApp({
-            setup() {
-                const slides = Array(6).fill(null);
-                const currentIndex = ref(0);
-                const aiCanvas = ref(null);
-                
-                const nextSlide = () => {
-                    currentIndex.value = (currentIndex.value + 1) % slides.length;
-                };
-                
-                const prevSlide = () => {
-                    currentIndex.value = (currentIndex.value - 1 + slides.length) % slides.length;
-                };
-                
-                const goToSlide = (index) => {
-                    currentIndex.value = index;
-                };
-                
-                // Автоматическое переключение
-                let interval;
-                const startAutoSlide = () => {
-                    interval = setInterval(nextSlide, 5000);
-                };
-                
-                // Эффекты ИИ на canvas
-                const initAICanvas = () => {
-                    const canvas = aiCanvas.value;
-                    const ctx = canvas.getContext('2d');
-                    
-                    const resizeCanvas = () => {
-                        canvas.width = window.innerWidth;
-                        canvas.height = window.innerHeight;
-                    };
-                    
-                    window.addEventListener('resize', resizeCanvas);
-                    resizeCanvas();
-                    
-                    const particles = [];
-                    const colors = ['#667eea', '#764ba2', '#6B46C1', '#9F7AEA'];
-                    
-                    class Particle {
-                        constructor() {
-                            this.reset();
-                        }
-                        
-                        reset() {
-                            this.x = Math.random() * canvas.width;
-                            this.y = Math.random() * canvas.height;
-                            this.size = Math.random() * 3 + 1;
-                            this.color = colors[Math.floor(Math.random() * colors.length)];
-                            this.speedX = Math.random() * 1 - 0.5;
-                            this.speedY = Math.random() * 1 - 0.5;
-                            this.life = 100;
-                            this.decay = Math.random() * 0.05 + 0.01;
-                        }
-                        
-                        update() {
-                            this.x += this.speedX;
-                            this.y += this.speedY;
-                            this.life -= this.decay;
-                            
-                            if (this.life <= 0 || 
-                                this.x < 0 || this.x > canvas.width || 
-                                this.y < 0 || this.y > canvas.height) {
-                                this.reset();
-                            }
-                        }
-                        
-                        draw() {
-                            ctx.globalAlpha = this.life / 100 * 0.2;
-                            ctx.fillStyle = this.color;
-                            ctx.beginPath();
-                            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                    }
-                    
-                    for (let i = 0; i < 50; i++) {
-                        particles.push(new Particle());
-                    }
-                    
-                    const animate = () => {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        
-                        particles.forEach(particle => {
-                            particle.update();
-                            particle.draw();
-                        });
-                        
-                        requestAnimationFrame(animate);
-                    };
-                    
-                    animate();
-                };
-                
-                onMounted(() => {
-                    startAutoSlide();
-                    initAICanvas();
-                    
-                    // Горячие клавиши
-                    window.addEventListener('keydown', (e) => {
-                        if (e.key === 'ArrowRight') nextSlide();
-                        if (e.key === 'ArrowLeft') prevSlide();
-                    });
-                });
-                
-                return {
-                    slides,
-                    currentIndex,
-                    aiCanvas,
-                    nextSlide,
-                    prevSlide,
-                    goToSlide
-                };
+    <script>
+        // Создаем частицы
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('cyber-particle');
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 10}s`;
+            particle.style.width = `${Math.random() * 10 + 2}px`;
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Слайдер
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progress = document.getElementById('progress');
+        let currentSlide = 0;
+        const slideCount = document.querySelectorAll('.cyber-slide').length;
+        let autoSlideInterval;
+        let isAnimating = false;
+
+        function updateSlider() {
+            isAnimating = true;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Сброс и запуск анимации прогресса
+            progress.style.animation = 'none';
+            void progress.offsetWidth; // Триггер рефлоу
+            progress.style.animation = 'progress 5s linear infinite';
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 1000);
+        }
+
+        function nextSlide() {
+            if (isAnimating) return;
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            if (isAnimating) return;
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            updateSlider();
+        }
+
+        // Автопереключение
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Обработчики событий
+        prevBtn.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            prevSlide();
+            startAutoSlide();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            nextSlide();
+            startAutoSlide();
+        });
+
+        // Горячие клавиши
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                clearInterval(autoSlideInterval);
+                nextSlide();
+                startAutoSlide();
             }
-        }).mount('#app');
+            if (e.key === 'ArrowLeft') {
+                clearInterval(autoSlideInterval);
+                prevSlide();
+                startAutoSlide();
+            }
+        });
+
+        // 3D эффекты при движении мыши
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.cyber-card').forEach(card => {
+                card.style.transform = `
+                    rotateY(${(x - 0.5) * 15}deg)
+                    rotateX(${(0.5 - y) * 15}deg)
+                `;
+            });
+        });
+
+        // Инициализация
+        updateSlider();
+        startAutoSlide();
+
+        // Параллакс эффект для частиц
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.cyber-particle').forEach(particle => {
+                particle.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            });
+        });
+
+        // Случайное мерцание
+        setInterval(() => {
+            document.querySelectorAll('.cyber-particle').forEach(particle => {
+                if (Math.random() > 0.7) {
+                    particle.style.opacity = Math.random();
+                    particle.style.background = 
+                        Math.random() > 0.5 ? 'var(--neon-pink)' : 'var(--neon-blue)';
+                }
+            });
+        }, 300);
     </script>
 </body>
 </html>
