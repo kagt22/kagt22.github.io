@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кото-мемы 2025</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "vue": "https://unpkg.com/vue@3.4.0/dist/vue.esm-browser.js"
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #121212;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .slider-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        
+        .slider-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .slide-content {
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .meme-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            object-fit: contain;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .meme-image:hover {
+            transform: translateY(-5px) rotateX(5deg);
+        }
+        
+        .caption {
+            color: white;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-top: 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            max-width: 80%;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .btn {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+        }
+        
+        .pagination {
+            position: absolute;
+            bottom: 1rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+        
+        .ai-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        @media (max-width: 768px) {
+            .slide-content {
+                height: 70vh;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="slider-container">
+            <div class="slider-track" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <img 
+                            src="https://cataas.com/cat?width=1200&height=800" 
+                            class="meme-image" 
+                            alt="AI Cat 2025"
+                            loading="lazy"
+                        >
+                        <div class="caption">"Когда ИИ делает всю работу за тебя"</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <img 
+                            src="https://cataas.com/cat/cute?width=1200&height=800" 
+                            class="meme-image" 
+                            alt="Cute Cat"
+                            loading="lazy"
+                        >
+                        <div class="caption">"Нейросети не смогут повторить эту милоту"</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <img 
+                            src="https://cataas.com/cat/gif?width=1200&height=800" 
+                            class="meme-image" 
+                            alt="Dancing Cat"
+                            loading="lazy"
+                        >
+                        <div class="caption">"Когда твой код работает без багов"</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <img 
+                            src="https://cataas.com/cat/says/Web%203.0?width=1200&height=800" 
+                            class="meme-image" 
+                            alt="Web 3.0 Cat"
+                            loading="lazy"
+                        >
+                        <div class="caption">"Кот в метавселенной"</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <img 
+                            src="https://cataas.com/cat/says/Quantum%20Computing?width=1200&height=800" 
+                            class="meme-image" 
+                            alt="Quantum Cat"
+                            loading="lazy"
+                        >
+                        <div class="caption">"Квантовый кот Шрёдингера"</div>
+                    </div>
+                </div>
+                
+                <!-- Slide 6 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <img 
+                            src="https://cataas.com/cat/says/Blockchain?width=1200&height=800" 
+                            class="meme-image" 
+                            alt="Crypto Cat"
+                            loading="lazy"
+                        >
+                        <div class="caption">"NFT котик"</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <div 
+                    v-for="(_, index) in slides" 
+                    :key="index"
+                    class="dot"
+                    :class="{ active: currentIndex === index }"
+                    @click="goToSlide(index)"
+                ></div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" @click="prevSlide">
+                <span>←</span> Назад
+            </button>
+            <button class="btn" @click="nextSlide">
+                Вперёд <span>→</span>
+            </button>
+        </div>
+        
+        <canvas class="ai-effects" ref="aiCanvas"></canvas>
+    </div>
+
+    <script type="module">
+        import { createApp, ref, onMounted } from 'vue';
+        
+        createApp({
+            setup() {
+                const slides = Array(6).fill(null);
+                const currentIndex = ref(0);
+                const aiCanvas = ref(null);
+                
+                const nextSlide = () => {
+                    currentIndex.value = (currentIndex.value + 1) % slides.length;
+                };
+                
+                const prevSlide = () => {
+                    currentIndex.value = (currentIndex.value - 1 + slides.length) % slides.length;
+                };
+                
+                const goToSlide = (index) => {
+                    currentIndex.value = index;
+                };
+                
+                // Автоматическое переключение
+                let interval;
+                const startAutoSlide = () => {
+                    interval = setInterval(nextSlide, 5000);
+                };
+                
+                // Эффекты ИИ на canvas
+                const initAICanvas = () => {
+                    const canvas = aiCanvas.value;
+                    const ctx = canvas.getContext('2d');
+                    
+                    const resizeCanvas = () => {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    };
+                    
+                    window.addEventListener('resize', resizeCanvas);
+                    resizeCanvas();
+                    
+                    const particles = [];
+                    const colors = ['#667eea', '#764ba2', '#6B46C1', '#9F7AEA'];
+                    
+                    class Particle {
+                        constructor() {
+                            this.reset();
+                        }
+                        
+                        reset() {
+                            this.x = Math.random() * canvas.width;
+                            this.y = Math.random() * canvas.height;
+                            this.size = Math.random() * 3 + 1;
+                            this.color = colors[Math.floor(Math.random() * colors.length)];
+                            this.speedX = Math.random() * 1 - 0.5;
+                            this.speedY = Math.random() * 1 - 0.5;
+                            this.life = 100;
+                            this.decay = Math.random() * 0.05 + 0.01;
+                        }
+                        
+                        update() {
+                            this.x += this.speedX;
+                            this.y += this.speedY;
+                            this.life -= this.decay;
+                            
+                            if (this.life <= 0 || 
+                                this.x < 0 || this.x > canvas.width || 
+                                this.y < 0 || this.y > canvas.height) {
+                                this.reset();
+                            }
+                        }
+                        
+                        draw() {
+                            ctx.globalAlpha = this.life / 100 * 0.2;
+                            ctx.fillStyle = this.color;
+                            ctx.beginPath();
+                            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                    
+                    for (let i = 0; i < 50; i++) {
+                        particles.push(new Particle());
+                    }
+                    
+                    const animate = () => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        
+                        particles.forEach(particle => {
+                            particle.update();
+                            particle.draw();
+                        });
+                        
+                        requestAnimationFrame(animate);
+                    };
+                    
+                    animate();
+                };
+                
+                onMounted(() => {
+                    startAutoSlide();
+                    initAICanvas();
+                    
+                    // Горячие клавиши
+                    window.addEventListener('keydown', (e) => {
+                        if (e.key === 'ArrowRight') nextSlide();
+                        if (e.key === 'ArrowLeft') prevSlide();
+                    });
+                });
+                
+                return {
+                    slides,
+                    currentIndex,
+                    aiCanvas,
+                    nextSlide,
+                    prevSlide,
+                    goToSlide
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
